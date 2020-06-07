@@ -1,12 +1,13 @@
+const DiscordRPC = ccmod.require('discord-rpc');
+
 const CLIENT_ID = '376560840012201984';
 
 export default class DiscordMod {
   prestart() {
-    const DiscordRPC = require('discord-rpc');
     this.rpc = new DiscordRPC.Client({ transport: 'ipc' });
   }
 
-  main() {
+  poststart() {
     this.rpc.on('ready', () => {
       this.setActivity();
       // activity can only be set every 15 seconds

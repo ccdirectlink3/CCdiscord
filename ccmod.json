@@ -1,0 +1,8 @@
+{
+  "id": "Discord",
+  "version": "0.2.0",
+  "title": "Rich Presence for Discord",
+  "description": "Show off your CrossCode skills in Discord",
+  "homepage": "https://github.com/CCDirectLink/CCdiscord",
+  "plugin": "plugin.js"
+}
