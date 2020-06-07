@@ -69,21 +69,16 @@ function getState(areaName) {
 }
 
 function getArea() {
+  // can be replaced with `sc.map.currentPlayerArea.path`, but that will require
+  // changing names of rich presence assets, and alas I don't have access to the
+  // application registered in Discord
   return (ig.game.mapName || '???').split('.')[0];
 }
 
 function getChapterText() {
   let chapter = sc.model.player.chapter;
-  let chapterData = ig.database.get('chapters')[chapter];
-  let chapterRet;
-  if (chapterData.prefix) {
-    chapterRet = chapterData.prefix[ig.currentLang];
-  } else {
-    chapter = chapter.toString().padStart(2, '0');
-    chapterRet = `Chapter ${chapter}`;
-  }
-  chapterRet += ': ' + chapterData.name[ig.currentLang];
-  return chapterRet;
+  let loreKey = `chapter-${chapter.toString().padStart(2, '0')}`;
+  return ig.LangLabel.bakeVars(sc.lore.getLoreTitle(loreKey));
 }
 
 const ART_LIST = [
